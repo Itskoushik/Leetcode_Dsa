@@ -1,18 +1,23 @@
 class Solution:
-    def maxProduct(self, nums: List[int]) -> int:
-        res = max(nums)  # Initialize the result with the maximum single element in nums
-        curmin, curmax = 1, 1  # Track the minimum and maximum product subarrays
+    def findMin(self, nums: List[int]) -> int:
+        res = nums[0]  # Initialize result with the first element
+        l, r = 0, len(nums) - 1  # Set left and right pointers
+        
+        while l <= r:
+            # If the current segment is sorted, the leftmost element is the smallest
+            if nums[l] < nums[r]:
+                res = min(res, nums[1])  # **BUG: Should be nums[l] instead of nums[1]**
+                break
 
-        for n in nums:
-            temp = curmax * n  # Store curmax * n before updating curmax
-
-            # Update curmax: It can be the current number itself, product of curmax, or product of curmin
-            curmax = max(n * curmax, n * curmin, n)
+            m = (l + r) // 2  # Calculate middle index
+            res = min(res, nums[m])  # Update result with the middle element
             
-            # Update curmin: Similar to curmax, but we track the minimum value
-            curmin = min(temp, n * curmin, n)
-            
-            # Update the result with the maximum product found so far
-            res = max(res, curmax)
-
-        return res  # Return the maximum product subarray
+            # Determine which side to search next
+            if nums[m] >= nums[l]:  
+                # Left half is sorted, so min must be in the right half
+                l = m + 1
+            else:  
+                # Right half is unsorted, so min must be in the left half
+                r = m - 1
+        
+        return res
