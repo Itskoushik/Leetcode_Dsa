@@ -10,7 +10,7 @@ The test cases are generated so that the answer will fit in a **32-bit integer**
 Input: nums = [2,3,-2,4]
 Output: 6
 Explanation: [2,3] has the largest product 6.
-
+```
 Constraints:
 
 1 <= nums.length <= 2 * 104
