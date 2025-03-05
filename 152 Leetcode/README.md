@@ -12,7 +12,8 @@ Output: 6
 Explanation: [2,3] has the largest product 6.
 ```
 Constraints:
-
+```
 1 <= nums.length <= 2 * 104
 -10 <= nums[i] <= 10
+```
 The product of any subarray of nums is guaranteed to fit in a 32-bit integer.
